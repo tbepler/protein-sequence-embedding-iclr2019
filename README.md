@@ -2,6 +2,7 @@
 
 This repository contains the source code and links to the data and pretrained embedding models accompanying the ICLR 2019 paper: [Learning protein sequence embeddings using information from structure](https://openreview.net/pdf?id=SygLehCqtm)
 
+```
 @inproceedings{
 bepler2018learning,
 title={Learning protein sequence embeddings using information from structure},
@@ -9,6 +10,7 @@ author={Tristan Bepler and Bonnie Berger},
 booktitle={International Conference on Learning Representations},
 year={2019},
 }
+```
 
 ## Setup and dependencies 
 
@@ -53,7 +55,7 @@ Please cite the above paper if you use this code or pretrained models in your wo
 
 ## License
 
-The source code is provided free for non-commercial use under the terms of the CC BY-NC 4.0 license. See [LICENSE](LICENSE) file and/or https://creativecommons.org/licenses/by-nc/4.0/legalcode for more information.
+The source code and trained models are provided free for non-commercial use under the terms of the CC BY-NC 4.0 license. See [LICENSE](LICENSE) file and/or https://creativecommons.org/licenses/by-nc/4.0/legalcode for more information.
 
 
 ## Contact
