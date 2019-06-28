@@ -141,7 +141,7 @@ class Shuffle:
     def __iter__(self):
         n = len(self.x)
         order = np.random.permutation(n)
-        order = torch.from_numpy(order).to(self.x.device)
+        order = torch.from_numpy(order).long().to(self.x.device)
         x = self.x[order]
         y = self.y[order]
         b = self.minibatch_size

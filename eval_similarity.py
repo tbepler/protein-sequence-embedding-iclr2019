@@ -89,7 +89,7 @@ class TorchModel:
                     p_lt[:-1] = 1 - p
                     p = p_ge*p_lt
                     p = p/p.sum() # make sure p is normalized
-                    levels = torch.arange(5)
+                    levels = torch.arange(5).float()
                     scores[i] = torch.sum(p*levels).item()
 
             elif self.mode == 'coarse':
