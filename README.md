@@ -23,6 +23,18 @@ Dependencies:
 - sklearn
 - cython
 
+The dependencies can be installed via pip and a virtual environment in the following way:
+
+First initialise the virtual environment:
+```
+python3 -m venv .env
+source ./.env/bin/activate
+```
+and then install the requirements:
+```
+pip install -r requirements.txt
+```
+
 Run setup.py to compile the cython files:
 
 ```
