@@ -104,7 +104,7 @@ def similarity_grad(model, x0, x1, y, use_cuda, weight=0.5):
 
         _,y_hard = torch.max(p, 1)
         levels = torch.arange(5).to(p.device)
-        y_hat = torch.sum(p*levels, 1)
+        y_hat = torch.sum(p*levels.float(), 1)
         y = torch.sum(y.data, 1)
 
         loss = F.cross_entropy(p, y).item() # calculate cross entropy loss from p vector
@@ -247,7 +247,7 @@ def eval_similarity(model, test_iterator, use_cuda):
 
     _,y_hard = torch.max(p, 1)
     levels = torch.arange(5).to(p.device)
-    y_hat = torch.sum(p*levels, 1)
+    y_hat = torch.sum(p*levels.float(), 1)
 
     accuracy = torch.mean((y == y_hard).float()).item()
     mse = torch.mean((y.float() - y_hat)**2).item()
