@@ -22,6 +22,7 @@ Dependencies:
 - pandas
 - sklearn
 - cython
+- h5py (for embedding script)
 
 Run setup.py to compile the cython files:
 
