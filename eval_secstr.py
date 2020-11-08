@@ -8,9 +8,9 @@ import torch.nn.functional as F
 from torch.nn.utils.rnn import PackedSequence
 import torch.utils.data
 
-from src.alphabets import Uniprot21, SecStr8
-from src.utils import pack_sequences, unpack_sequences
-import src.pdb as pdb
+from bepler.alphabets import Uniprot21, SecStr8
+from bepler.utils import pack_sequences, unpack_sequences
+import bepler.pdb as pdb
 
 
 secstr_train_path = 'data/secstr/ss_cullpdb_pc40_res3.0_R1.0_d180412_filtered.train.fa'

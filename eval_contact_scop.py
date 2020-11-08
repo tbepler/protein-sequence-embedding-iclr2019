@@ -10,11 +10,11 @@ import torch
 from torch.nn.utils.rnn import PackedSequence
 import torch.utils.data
 
-from src.alphabets import Uniprot21
-import src.fasta as fasta
-from src.utils import pack_sequences, unpack_sequences
-from src.utils import ContactMapDataset, collate_lists
-from src.metrics import average_precision
+from bepler.alphabets import Uniprot21
+import bepler.fasta as fasta
+from bepler.utils import pack_sequences, unpack_sequences
+from bepler.utils import ContactMapDataset, collate_lists
+from bepler.metrics import average_precision
 
 
 def load_data(seq_path, struct_path, alphabet, baselines=False):

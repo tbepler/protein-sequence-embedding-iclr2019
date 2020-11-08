@@ -9,9 +9,9 @@ import torch.nn.functional as F
 from torch.nn.utils.rnn import PackedSequence
 import torch.utils.data
 
-from src.alphabets import Uniprot21
-from src.parse_utils import parse_3line
-import src.transmembrane as tm
+from bepler.alphabets import Uniprot21
+from bepler.parse_utils import parse_3line
+import bepler.transmembrane as tm
 
 def load_3line(path, alphabet):
     with open(path, 'rb') as f:
@@ -63,12 +63,12 @@ def unstack_lstm(lstm):
             dest = attr + '0'
             src = attr + str(i)
             getattr(layer, dest).data[:] = getattr(lstm, src)
-            #setattr(layer, dest, getattr(lstm, src))
+            #setattr(layer, dest, getattr(lstm, bepler))
             
             dest = attr + '0_reverse'
             src = attr + str(i) + '_reverse'
             getattr(layer, dest).data[:] = getattr(lstm, src)
-            #setattr(layer, dest, getattr(lstm, src))
+            #setattr(layer, dest, getattr(lstm, bepler))
         layers.append(layer)
         in_size = 2*hidden_dim
     return layers

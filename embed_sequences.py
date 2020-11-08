@@ -8,9 +8,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from src.alphabets import Uniprot21
-import src.fasta as fasta
-import src.models.sequence
+from bepler.alphabets import Uniprot21
+import bepler.fasta as fasta
+import bepler.models.sequence
 
 
 def unstack_lstm(lstm):
@@ -28,12 +28,12 @@ def unstack_lstm(lstm):
             dest = attr + '0'
             src = attr + str(i)
             getattr(layer, dest).data[:] = getattr(lstm, src)
-            #setattr(layer, dest, getattr(lstm, src))
+            #setattr(layer, dest, getattr(lstm, bepler))
             
             dest = attr + '0_reverse'
             src = attr + str(i) + '_reverse'
             getattr(layer, dest).data[:] = getattr(lstm, src)
-            #setattr(layer, dest, getattr(lstm, src))
+            #setattr(layer, dest, getattr(lstm, bepler))
         layer.flatten_parameters()
         layers.append(layer)
         in_size = 2*hidden_dim
@@ -101,7 +101,7 @@ def load_model(path, use_cuda=False):
     if use_cuda:
         encoder.cuda()
 
-    if type(encoder) is src.models.sequence.BiLM:
+    if type(encoder) is bepler.models.sequence.BiLM:
         # model is only the LM
         return encoder.encode, None, None
 

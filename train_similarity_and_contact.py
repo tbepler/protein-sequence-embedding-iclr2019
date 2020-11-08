@@ -15,15 +15,15 @@ from torch.autograd import Variable
 from torch.nn.utils.rnn import PackedSequence, pack_padded_sequence, pad_packed_sequence
 import torch.utils.data
 
-from src.alphabets import Uniprot21
-import src.scop as scop
-from src.utils import pack_sequences, unpack_sequences
-from src.utils import ContactMapDataset, collate_lists
-from src.utils import PairedDataset, AllPairsDataset, collate_paired_sequences
-from src.utils import MultinomialResample
-import src.models.embedding
-import src.models.multitask
-from src.metrics import average_precision
+from bepler.alphabets import Uniprot21
+import bepler.scop as scop
+from bepler.utils import pack_sequences, unpack_sequences
+from bepler.utils import ContactMapDataset, collate_lists
+from bepler.utils import PairedDataset, AllPairsDataset, collate_paired_sequences
+from bepler.utils import MultinomialResample
+import bepler.models.embedding
+import bepler.models.multitask
+from bepler.metrics import average_precision
 
 cmap_paths = glob.glob('data/SCOPe/pdbstyle-2.06/*/*.png')
 cmap_dict = {os.path.basename(path)[:7] : path for path in cmap_paths}
@@ -438,9 +438,9 @@ def main():
         for param in lm.parameters():
             param.requires_grad = False
 
-    embedding = src.models.embedding.StackedRNN(len(alphabet), input_dim, rnn_dim
-                                               , embedding_size, nlayers=num_layers
-                                               , dropout=dropout, lm=lm)
+    embedding = bepler.models.embedding.StackedRNN(len(alphabet), input_dim, rnn_dim
+                                                   , embedding_size, nlayers=num_layers
+                                                   , dropout=dropout, lm=lm)
 
     # similarity prediction parameters
     similarity_kwargs = {}
@@ -450,8 +450,8 @@ def main():
     width = args.width
     cmap_kwargs = {'hidden_dim': hidden_dim, 'width': width}
     
-    model = src.models.multitask.SCOPCM(embedding, similarity_kwargs=similarity_kwargs,
-                                        cmap_kwargs=cmap_kwargs)
+    model = bepler.models.multitask.SCOPCM(embedding, similarity_kwargs=similarity_kwargs,
+                                           cmap_kwargs=cmap_kwargs)
     if use_cuda:
         model.cuda()
 

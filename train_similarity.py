@@ -13,13 +13,13 @@ from torch.autograd import Variable
 from torch.nn.utils.rnn import PackedSequence, pack_padded_sequence, pad_packed_sequence
 import torch.utils.data
 
-from src.alphabets import Uniprot21
-import src.scop as scop
-from src.utils import pack_sequences, unpack_sequences
-from src.utils import PairedDataset, AllPairsDataset, collate_paired_sequences
-from src.utils import MultinomialResample
-import src.models.embedding
-import src.models.comparison
+from bepler.alphabets import Uniprot21
+import bepler.scop as scop
+from bepler.utils import pack_sequences, unpack_sequences
+from bepler.utils import PairedDataset, AllPairsDataset, collate_paired_sequences
+from bepler.utils import MultinomialResample
+import bepler.models.embedding
+import bepler.models.comparison
 
 
 def main():
@@ -197,20 +197,20 @@ def main():
         print('# using LM:', args.lm, file=sys.stderr)
 
     if num_layers > 0:
-        embedding = src.models.embedding.StackedRNN(len(alphabet), input_dim, rnn_dim, embedding_size
-                                                   , nlayers=num_layers, dropout=dropout, lm=lm)
+        embedding = bepler.models.embedding.StackedRNN(len(alphabet), input_dim, rnn_dim, embedding_size
+                                                       , nlayers=num_layers, dropout=dropout, lm=lm)
     else:
-        embedding = src.models.embedding.Linear(len(alphabet), input_dim, embedding_size, lm=lm)
+        embedding = bepler.models.embedding.Linear(len(alphabet), input_dim, embedding_size, lm=lm)
 
     if args.norm == 'l1':
-        norm = src.models.comparison.L1()
+        norm = bepler.models.comparison.L1()
         print('# norm: l1', file=sys.stderr)
     elif args.norm == 'l2':
-        norm = src.models.comparison.L2()
+        norm = bepler.models.comparison.L2()
         print('# norm: l2', file=sys.stderr)
-    model = src.models.comparison.OrdinalRegression(embedding, 5, align_method=compare_type
-                                                   , compare=norm, allow_insertions=allow_insert
-                                                   )
+    model = bepler.models.comparison.OrdinalRegression(embedding, 5, align_method=compare_type
+                                                       , compare=norm, allow_insertions=allow_insert
+                                                       )
 
     if use_cuda:
         model.cuda()

@@ -1,8 +1,12 @@
 from distutils.core import setup
-from Cython.Build import cythonize
+
 import numpy as np
+from Cython.Build import cythonize
+from setuptools import find_packages
 
 setup(
-    ext_modules = cythonize(['src/metrics.pyx', 'src/alignment.pyx']),
-    include_dirs=[np.get_include()]
+    name="bepler",
+    packages=find_packages(),
+    ext_modules=cythonize(["bepler/metrics.pyx", "bepler/alignment.pyx"]),
+    include_dirs=[np.get_include()],
 )

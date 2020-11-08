@@ -11,9 +11,9 @@ from torch.autograd import Variable
 import torch.utils.data
 from torch.nn.utils.rnn import pack_padded_sequence
 
-import src.fasta as fasta
-from src.alphabets import Uniprot21
-import src.models.sequence
+import bepler.fasta as fasta
+from bepler.alphabets import Uniprot21
+import bepler.models.sequence
 
 parser = argparse.ArgumentParser('Train sequence model')
 
@@ -88,8 +88,8 @@ def main():
 
     tied = not args.untied
 
-    model = src.models.sequence.BiLM(nin, nout, embedding_dim, hidden_dim, num_layers
-                                    , mask_idx=mask_idx, dropout=dropout, tied=tied)
+    model = bepler.models.sequence.BiLM(nin, nout, embedding_dim, hidden_dim, num_layers
+                                        , mask_idx=mask_idx, dropout=dropout, tied=tied)
     print('# initialized model', file=sys.stderr)
 
     device = args.device

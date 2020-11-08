@@ -7,7 +7,7 @@ pretrained_models.tar.gz
 *.swp
 
 # cython compiled .c files
-src/*.c
+bepler/*.c
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
