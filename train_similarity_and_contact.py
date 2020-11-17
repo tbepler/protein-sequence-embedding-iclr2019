@@ -95,7 +95,7 @@ def similarity_grad(model, x0, x1, y, use_cuda, weight=0.5):
 
     # calculate minibatch performance metrics
     with torch.no_grad():
-        p = F.sigmoid(logits) 
+        p = torch.sigmoid(logits) 
         ones = p.new(b,1).zero_() + 1
         p_ge = torch.cat([ones, p], 1)
         p_lt = torch.cat([1-p, ones], 1)
@@ -146,7 +146,7 @@ def contacts_grad(model, x, y, use_cuda, weight=0.5):
 
     # calculate the recall and precision
     with torch.no_grad():
-        p_hat = F.sigmoid(logits)
+        p_hat = torch.sigmoid(logits)
         tp = torch.sum(p_hat*y).item()
         gp = y.sum().item()
         pp = p_hat.sum().item()
@@ -195,7 +195,7 @@ def eval_contacts(model, test_iterator, use_cuda):
 
     loss = F.binary_cross_entropy_with_logits(logits, y).item()
 
-    p_hat = F.sigmoid(logits)
+    p_hat = torch.sigmoid(logits)
     tp = torch.sum(y*p_hat).item()
     pr = tp/torch.sum(p_hat).item()
     re = tp/torch.sum(y).item()
@@ -236,7 +236,7 @@ def eval_similarity(model, test_iterator, use_cuda):
     y = torch.cat(y, 0)
     logits = torch.stack(logits, 0)
 
-    p = F.sigmoid(logits).data 
+    p = torch.sigmoid(logits).data 
     ones = p.new(p.size(0),1).zero_() + 1
     p_ge = torch.cat([ones, p], 1)
     p_lt = torch.cat([1-p, ones], 1)

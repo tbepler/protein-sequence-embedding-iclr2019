@@ -82,7 +82,7 @@ class TorchModel:
                     z_y = z[i+n]
 
                     logits = self.model.score(z_x, z_y)
-                    p = F.sigmoid(logits).cpu()
+                    p = torch.sigmoid(logits).cpu()
                     p_ge = torch.ones(p.size(0)+1)
                     p_ge[1:] = p
                     p_lt = torch.ones(p.size(0)+1)
