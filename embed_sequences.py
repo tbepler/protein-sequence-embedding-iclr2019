@@ -118,7 +118,7 @@ def main():
     import argparse
     parser = argparse.ArgumentParser('Script for embedding fasta format sequences using a saved embedding model. Saves embeddings as HDF5 file.')
 
-    parser.add_argument('path', help='sequences to embed in fasta format')
+    parser.add_argument('-path', help='sequences to embed in fasta format')
     parser.add_argument('-m', '--model', help='path to saved embedding model')
     parser.add_argument('-o', '--output', help='path to HDF5 output file')
     parser.add_argument('--lm-only', action='store_true', help='only return the language model hidden layers')
