@@ -1,5 +1,10 @@
 # Learning protein sequence embeddings using information from structure
 
+New and improved embedding models combining sequence and structure training are now available at https://github.com/tbepler/prose!
+
+<br />
+<br />
+
 This repository contains the source code and links to the data and pretrained embedding models accompanying the ICLR 2019 paper: [Learning protein sequence embeddings using information from structure](https://openreview.net/pdf?id=SygLehCqtm)
 
 ```
